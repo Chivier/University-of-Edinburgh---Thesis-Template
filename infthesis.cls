@@ -649,23 +649,23 @@ Computer Science}}
      \renewcommand{\maketitle}{
         \begin{titlepage}\begin{center}
         \null\vfil\vskip 60\p@
-        \ifthenelse{\boolean{logo}}%
-            {\resizebox{45mm}{!}{\includeshield}\\\vskip 20\p@}
-            {}
         {\LARGE\bfseries \@chapterfont \@title \par
            \ifthenelse{\boolean{draftthesis}}{\large (Draft Copy)}{}
         }\vfill
-        {\large Thesis submitted to the \@university{} for the degree of \\
-        \@degreetext, \@submityear.
+        {\Large\itshape \@author \par}\vskip 1cm\vfill
+        %% Uncomment the following lines to add supervisor information
+        % {\large Supervised by \par}\vskip 10\p@
+        % {\large First Supervisor \\ Second Supervisor \\ Third Supervisor \par}\vfill
+        %% Uncomment the following lines to add signature and date
+        % {\large Signature \rule{5cm}{0.4pt} \par}\vskip 5\p@
+        % {\large Date \rule{1.5cm}{0.4pt} / \rule{1.5cm}{0.4pt} / \rule{1.5cm}{0.4pt} \par}\vfill
+        \ifthenelse{\boolean{logo}}%
+            {\resizebox{45mm}{!}{\includeshield}\\\vfill}
+            {}
+        {\large \@degreetext \par \@submityear \par}
+        \vskip 1cm
         \ifthenelse{\equal{\@graduationdate}{}}{}
-           { \@graduationdate.}
-        \par}\vfill
-        {\Large\itshape \@author \par}\vfill
-        {\large Your ID \par}\vfill
-        {\large Supervised by \par}\vskip 10\p@
-        {\large First Supervisor \\ Second Supervisor \\ Third Supervisor \par}\vfill
-        {\large Signature \rule{5cm}{0.4pt} \par}\vskip 5\p@
-        {\large Date \rule{1.5cm}{0.4pt} / \rule{1.5cm}{0.4pt} / \rule{1.5cm}{0.4pt} \par}
+           {{\large \ttfamily (Graduation date: \@graduationdate)}}
         \end{center}
         \end{titlepage}\cleardoublepage
         \begin{mainabs}\@abs\end{mainabs}
