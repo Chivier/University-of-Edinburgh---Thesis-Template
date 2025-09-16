@@ -523,10 +523,9 @@ Computer Science}}
     {\ifthenelse{\boolean{romanpre}}%
         {\pagestyle{plain}\pagenumbering{roman}\setcounter{page}{1}}
         {\pagestyle{empty}}}%
-    {\cleardoublepage%
-     \ifthenelse{\boolean{romanpre}}%
-        {\clearpage\phantomsection\pagenumbering{arabic}\setcounter{page}{1}}%
-        {}}
+    {\ifthenelse{\boolean{romanpre}}%
+        {\cleardoublepage\pagenumbering{arabic}\setcounter{page}{1}}%
+        {\cleardoublepage}}
 
 %%
 %% Let's have a dedication page so I can thank my mummy.
