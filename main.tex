@@ -1,4 +1,15 @@
+% !TEX program = lualatex
+% !TEX encoding = UTF-8 Unicode
+%
 %%%%%%%%%%%%%%%%%%%%%%%%
+%% IMPORTANT: This template requires LuaLaTeX due to fontspec package
+%% Do NOT use pdflatex - it will fail with fontspec errors
+%%
+%% Compilation methods:
+%% 1. Use: latexmk -lualatex main.tex
+%% 2. Use: ./compile.sh (provided script)
+%% 3. Manual: lualatex main.tex && bibtex main && lualatex main.tex && lualatex main.tex
+%%
 %% Sample use of the infthesis class to prepare a thesis. This can be used as
 %% a template to produce your own thesis.
 %%
@@ -75,6 +86,7 @@
 %% Chemistry PhD: \documentclass[phd,chemistry,oneside,logo]{infthesis}
 
 \usepackage[T1]{fontenc}
+\usepackage{fontspec}
 \usepackage{natbib}
 \usepackage[british]{babel}
 \usepackage{graphicx}
@@ -112,13 +124,13 @@
 \abstract{
 This enhanced University of Edinburgh thesis template builds upon the excellent
 work by Daniel Hillerstroem, Chris Vasiladiotis, and Laurie Burchell from their
-CDT in NLP thesis template (https://www.overleaf.com/latex/templates/cdt-in-nlp-thesis/dwhtbkzqpjwx).
+CDT in NLP thesis template (\url{https://www.overleaf.com/latex/templates/cdt-in-nlp-thesis/dwhtbkzqpjwx}).
 
 This template extends the original work with additional features including:
 comprehensive pseudocode examples using the algorithm and algorithmic packages,
 advanced TikZ diagrams for flowcharts and mathematical visualizations,
-enhanced table formatting with support for complex multi-row and multi-column layouts,
-improved citation management with multiple reference styles,
+enhanced table formatting with support for complex multi-row and multi-column
+layouts, improved citation management with multiple reference styles,
 and optional supervisor signature sections for different institutional requirements.
 
 The template maintains compatibility with the original infthesis class while
@@ -138,7 +150,7 @@ example chapters that demonstrate all available features.
 % Lay summary
 \cleardoublepage
 \begin{center}
-\textsf{\textbf{Summary}}
+\textsf{\textbf{\LARGE Summary}}
 \end{center}
 Lay summary here
 

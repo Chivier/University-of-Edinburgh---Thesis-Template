@@ -320,8 +320,8 @@ Computer Science}}
 %% really empty. Taken from titlesec.sty
 
 \def\cleardoublepage{%
-    \clearpage{\ps@empty\if@twoside\ifodd\c@page\else
-    \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}}
+    \clearpage{\ps@empty\ifthenelse{\equal{\@thesisside}{twoside}}{\ifodd\c@page\else
+    \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi}{}}}
 
 %%
 %% Hack to make minitoc work with csthesis. We declare a new chapter
@@ -346,8 +346,8 @@ Computer Science}}
 %% bit magic, but they seem to do the trick... :-)
 %% Adapted from Francois Pitt's ut-thesis class from the University of
 %% Toronto.
-\if@twoside % if two-sided printing
-\renewcommand{\ps@headings}{
+\ifthenelse{\equal{\@thesisside}{twoside}} % if two-sided printing
+{\renewcommand{\ps@headings}{
    \let\@mkboth\markboth
    \def\@oddfoot{}
    \let\@evenfoot\@oddfoot
@@ -361,17 +361,16 @@ Computer Science}}
       {\ifnum\c@secnumdepth >\z@
          \thesection. \ \fi ##1}}%
 }%ps@headings
-\else % if one-sided printing
-\renewcommand{\ps@headings}{
+} % else if one-sided printing
+{\renewcommand{\ps@headings}{
    \let\@mkboth\markboth
-   \def\@oddfoot{}
-   \def\@oddhead{{\headfootstyle\itshape\rightmark}\hfil
-      \headfootstyle\thepage}%
+   \def\@oddfoot{\hfil\headfootstyle\thepage\hfil}
+   \def\@oddhead{{\headfootstyle\itshape\rightmark}\hfil}%
    \def\chaptermark##1{\markright
       {\ifnum\c@secnumdepth >\m@ne
          \@chapapp\ \thechapter. \ \fi ##1}}%
 }%ps@headings
-\fi%@twoside
+}
 
 \renewcommand{\ps@plain}{
   \renewcommand{\@oddfoot}{\hfil\headfootstyle\thepage\hfil}
