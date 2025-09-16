@@ -1,0 +1,124 @@
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% Sample use of the infthesis class to prepare a thesis. This can be used as 
+%% a template to produce your own thesis.
+%%
+%% The title, abstract and so on are taken from Martin Reddy's csthesis class
+%% documentation.
+%%
+%% MEF, October 2002
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%
+%% Load the class. Put any options that you want here (see the documentation
+%% for the list of options). The following are samples for each type of
+%% thesis:
+%%
+%% Note: you can also specify any of the following options:
+%%  logo: put a University of Edinburgh logo onto the title page
+%%  frontabs: put the abstract onto the title page
+%%  deptreport: produce a title page that fits into a Computer Science
+%%      departmental cover [not sure if this actually works]
+%%  singlespacing, fullspacing, doublespacing: choose line spacing
+%%  oneside, twoside: specify a one-sided or two-sided thesis
+%%  10pt, 11pt, 12pt: choose a font size
+%%  centrechapter, leftchapter, rightchapter: alignment of chapter headings
+%%  sansheadings, normalheadings: headings and captions in sans-serif
+%%      (default) or in the same font as the rest of the thesis
+%%  [no]listsintoc: put list of figures/tables in table of contents (default:
+%%      not)
+%%  romanprepages, plainprepages: number the preliminary pages with Roman
+%%      numerals (default) or consecutively with the rest of the thesis
+%%  parskip: don't indent paragraphs, put a blank line between instead
+%%  abbrevs: define a list of useful abbreviations (see documentation)
+%%  draft: produce a single-spaced, double-sided thesis with narrow margins
+%%
+%% For a PhD thesis -- you must also specify a research institute:
+\documentclass[phd,ilcc,twoside,logo]{infthesis}
+
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage{natbib}
+\usepackage[british]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb}  % for maths
+\usepackage{booktabs}  % for pretty lines in tables
+\usepackage{nth}  % for easy ordinals
+\usepackage{csquotes}
+\usepackage[colorlinks=true,linkcolor=black,anchorcolor=black,citecolor=black,filecolor=black,menucolor=black,runcolor=black,urlcolor=black]{hyperref}  % for urls
+\usepackage{cleveref} % for references to sections/figures/tables...
+
+%% Information about the title, etc.
+\title{Your amazing thesis}
+\author{Your name here}
+
+%% If the year of submission is not the current year, uncomment this line and 
+%% specify it here:
+\submityear{2099}
+
+%% Optionally, specify the graduation month and year:
+%\graduationdate{June 2024}
+
+%% Specify the abstract here.
+\abstract{Your abstract here}
+
+%% Now we start with the actual document.
+\begin{document}
+
+%% First, the preliminary pages
+\begin{preliminary}
+
+%% This creates the title page
+\maketitle
+
+% Lay summary
+\cleardoublepage
+\begin{center}
+\textsf{\textbf{\LARGE Lay Summary}}
+\end{center}
+Lay summary here
+
+\cleardoublepage
+
+%% Acknowledgements
+\begin{acknowledgements}
+Acknowledgements here
+\end{acknowledgements}
+
+%% Next we need to have the declaration.
+\standarddeclaration
+
+%% Finally, a dedication (this is optional -- uncomment the following line if
+%% you want one).
+% \dedication{}
+
+%% Create the table of contents
+\tableofcontents
+
+%% If you want a list of figures or tables, uncomment the appropriate line(s)
+% \listoffigures
+% \listoftables
+
+\end{preliminary}
+
+%%%%%%%%
+%% Include your chapter files here. See the sample chapter file for the basic
+%% format.
+
+\include{chapters/1introduction}
+
+%%%%%%%%
+%% Any appendices should go here. The appendix files should look just like the
+%% chapter files.
+%\appendix
+%\include{chapters/99appendix}
+
+%% Choose your favourite bibliography style here.
+\bibliographystyle{apalike}
+
+%% If you want the bibliography single-spaced (which is allowed), uncomment
+%% the next line.
+%\singlespace
+
+\bibliography{anthology}
+
+\end{document}
