@@ -179,11 +179,37 @@ ImageNet & 76.3\% & 0.762 & 73.9\% & 0.738 \\
 \end{tabular}
 \end{table}
 
+For very wide tables that exceed the text width, the \texttt{resizebox} command can be used to scale the table to fit within the page margins. \Cref{tab:wide} demonstrates this approach with a complex performance comparison table.
+
+\begin{table}[htbp]
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l|cc|cccc}
+\hline
+\multicolumn{1}{c|}{\multirow{2}{*}{Model}} & \multicolumn{2}{c|}{\multirow{2}{*}{Device}} & \multicolumn{4}{c}{Input/Output Sequence Length} \\ \cline{4-7}
+\multicolumn{1}{c|}{} & \multicolumn{2}{c|}{} & \multicolumn{1}{c|}{2048/128} & \multicolumn{1}{c|}{4096/128} & \multicolumn{1}{c|}{2048/2048} & 4096/4096 \\ \hline
+\multirow{6}{*}{LLaMA3-8B} & \multicolumn{1}{c|}{\multirow{3}{*}{WSE-2}} & System & \multicolumn{1}{c|}{764.4} & \multicolumn{1}{c|}{604.4} & \multicolumn{1}{c|}{2370.3} & 2459.0 \\
+ & \multicolumn{1}{c|}{} & T10 & \multicolumn{1}{c|}{4.6} & \multicolumn{1}{c|}{4.5} & \multicolumn{1}{c|}{58.3} & 94.6 \\
+ & \multicolumn{1}{c|}{} & Ladder & \multicolumn{1}{c|}{1.2} & \multicolumn{1}{c|}{1.1} & \multicolumn{1}{c|}{7.4} & 8.7 \\ \cline{2-7}
+ & \multicolumn{1}{c|}{\multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}A100 GPU\\ (SGLang)\end{tabular}}} & 1 & \multicolumn{1}{c|}{34.8} & \multicolumn{1}{c|}{31.1} & \multicolumn{1}{c|}{36.5} & 78.4 \\
+ & \multicolumn{1}{c|}{} & 8 & \multicolumn{1}{c|}{117.2} & \multicolumn{1}{c|}{109.0} & \multicolumn{1}{c|}{128.4} & 256.1 \\
+ & \multicolumn{1}{c|}{} & 2$\times$8 & \multicolumn{1}{c|}{73.7} & \multicolumn{1}{c|}{70.2} & \multicolumn{1}{c|}{79.3} & 162.5 \\ \hline
+\multirow{5}{*}{LLaMA2-13B} & \multicolumn{1}{c|}{\multirow{3}{*}{WSE-2}} & System & \multicolumn{1}{c|}{473.9} & \multicolumn{1}{c|}{414} & \multicolumn{1}{c|}{1690.3} & 1826.0 \\
+ & \multicolumn{1}{c|}{} & T10 & \multicolumn{1}{c|}{2.6} & \multicolumn{1}{c|}{2.5} & \multicolumn{1}{c|}{35.0} & 58.3 \\
+ & \multicolumn{1}{c|}{} & Ladder & \multicolumn{1}{c|}{0.7} & \multicolumn{1}{c|}{0.7} & \multicolumn{1}{c|}{4.9} & 6.1 \\ \cline{2-7}
+ & \multicolumn{1}{c|}{\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}A100 GPU\\ (SGLang)\end{tabular}}} & 1 & \multicolumn{1}{c|}{20.4} & \multicolumn{1}{c|}{17.1} & \multicolumn{1}{c|}{21.1} & 47.9 \\
+ & \multicolumn{1}{c|}{} & 8 & \multicolumn{1}{c|}{79.6} & \multicolumn{1}{c|}{70.5} & \multicolumn{1}{c|}{86.9} & 172.4 \\ \hline
+\end{tabular}
+}
+\caption{End-to-end LLM inference throughput comparison (tokens per second)}
+\label{tab:wide}
+\end{table}
+
 \section{Long Table Example}
 
 For tables that span multiple pages, the \texttt{longtable} environment is useful:
 
-\begin{longtable}{@{}lp{3cm}p{3cm}p{3cm}@{}}
+\begin{longtable}{@{}p{2.5cm}>{\raggedright\arraybackslash}p{4cm}>{\raggedright\arraybackslash}p{4cm}>{\raggedright\arraybackslash}p{3.5cm}@{}}
 \caption{Experimental results across multiple conditions} \label{tab:long} \\
 \toprule
 Condition & Method A & Method B & Method C \\
@@ -203,14 +229,12 @@ Condition & Method A & Method B & Method C \\
 \bottomrule
 \endlastfoot
 
-Condition 1 & Lorem ipsum dolor sit amet & Consectetur adipiscing elit & Sed do eiusmod tempor \\
-Condition 2 & Ut labore et dolore magna & Quis nostrud exercitation & Ullamco laboris nisi \\
-Condition 3 & Duis aute irure dolor & Excepteur sint occaecat & Cupidatat non proident \\
-Condition 4 & Sunt in culpa qui officia & Mollit anim id est & Laborum sed ut \\
-Condition 5 & Perspiciatis unde omnis & Iste natus error sit & Voluptatem accusantium \\
-Condition 6 & Doloremque laudantium & Totam rem aperiam & Eaque ipsa quae \\
-Condition 7 & Ab illo inventore & Veritatis et quasi & Architecto beatae vitae \\
-Condition 8 & Dicta sunt explicabo & Nemo enim ipsam & Voluptatem quia voluptas \\
+Baseline Control & Achieved 85.2\% accuracy with standard preprocessing methods and conventional feature extraction & Used traditional machine learning algorithms including random forests and support vector machines & Results demonstrate good baseline performance but leave room for significant improvement \\
+Deep Learning & Implemented convolutional neural networks with advanced regularization techniques and data augmentation & Applied transfer learning from pre-trained models and fine-tuned hyperparameters systematically & Achieved 92.7\% accuracy, representing substantial improvement over baseline methods \\
+Ensemble Method & Combined multiple deep learning architectures using weighted voting and stacking approaches & Incorporated gradient boosting and cross-validation for robust model selection and evaluation & Final accuracy reached 94.1\% with improved generalization and reduced overfitting \\
+Hybrid Approach & Integrated traditional feature engineering with modern deep learning representation learning & Used attention mechanisms and transformer architectures for enhanced feature extraction & Achieved state-of-the-art 95.8\% accuracy while maintaining computational efficiency \\
+Optimized Model & Applied neural architecture search and automated hyperparameter optimization techniques & Implemented knowledge distillation and model compression for deployment efficiency & Final model achieves 96.2\% accuracy with 3x faster inference time \\
+Production Ready & Developed robust preprocessing pipeline and comprehensive error handling mechanisms & Integrated monitoring systems and automated retraining protocols for continuous improvement & Successfully deployed with 99.9\% uptime and sub-100ms response latency \\
 \end{longtable}
 
 \section{Citations and References}
@@ -232,7 +256,7 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 \section{Cross-References}
 
-LaTeX provides excellent cross-referencing capabilities using the \texttt{cleveref} package:
+LaTeX provides excellent cross-referencing capabilities with the \texttt{cleveref} package:
 
 \begin{itemize}
 \item Reference to chapter: \Cref{chap:examples}

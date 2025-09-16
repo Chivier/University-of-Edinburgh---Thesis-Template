@@ -521,11 +521,11 @@ Computer Science}}
 
 \newenvironment{preliminary}
     {\ifthenelse{\boolean{romanpre}}%
-        {\pagestyle{plain}\pagenumbering{roman}}
+        {\pagestyle{plain}\pagenumbering{roman}\setcounter{page}{1}}
         {\pagestyle{empty}}}%
     {\cleardoublepage%
      \ifthenelse{\boolean{romanpre}}%
-        {\pagenumbering{arabic}}%
+        {\clearpage\phantomsection\pagenumbering{arabic}\setcounter{page}{1}}%
         {}}
 
 %%
@@ -678,10 +678,13 @@ Computer Science}}
     {\RequirePackage[nottoc,notbib]{tocbibind}}
     {}
 
-%% Use the "pslatex" fonts unless they told us not to
-\ifthenelse{\boolean{timesfonts}}
-    {\RequirePackage{pslatex}}
-    {}
+%% Use appropriate fonts for the engine
+\ifthenelse{\boolean{timesfonts}}{%
+    % Use Times fonts for all engines to avoid fontspec issues
+    \RequirePackage{mathptmx}%  % Times for text and math
+    \RequirePackage[scaled=.90]{helvet}%  % Helvetica for sans-serif
+    \RequirePackage{courier}%  % Courier for monospace
+}{}
 
 %% ALWAYS put the bibliography into the TOC.
 %% Thanks to Peter Wilson <peter.r.wilson@boeing.com> for pointing me in the
@@ -701,6 +704,10 @@ Computer Science}}
 %% packages above because sectsty won't work except from within report.cls
 %% itself. Must save \@chapterfont because the front environments (abstract
 %% etc) also need to use it.
+%% Suppress sectsty warnings by providing silence
+\RequirePackage{silence}
+\WarningFilter{latex}{Command \underbar}
+\WarningFilter{latex}{Command \underline}
 \RequirePackage{sectsty,caption}
 \ifthenelse{\boolean{sansheadings}}
     {\allsectionsfont{\sffamily}
