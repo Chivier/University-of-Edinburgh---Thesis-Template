@@ -11,6 +11,13 @@
 %%   - Added phdannual option for annual reviews
 %%   - Added multi-disciplinary institute support
 %%   - Enhanced template generalization
+%%
+%% This template builds upon the excellent work by Daniel Hillerstroem,
+%% Chris Vasiladiotis, and Laurie Burchell from the CDT in NLP thesis template:
+%% https://www.overleaf.com/latex/templates/cdt-in-nlp-thesis/dwhtbkzqpjwx
+%% We acknowledge their contributions and have extended their work with
+%% additional features including advanced TikZ diagrams, pseudocode examples,
+%% enhanced table formatting, and improved citation management.
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%
@@ -78,6 +85,17 @@
 \usepackage[colorlinks=true,linkcolor=black,anchorcolor=black,citecolor=black,filecolor=black,menucolor=black,runcolor=black,urlcolor=black]{hyperref}  % for urls
 \usepackage{cleveref} % for references to sections/figures/tables...
 
+% Packages for advanced features
+\usepackage{algorithm}  % for algorithm environment
+\usepackage{algorithmic}  % for pseudocode
+\usepackage{tikz}  % for TikZ diagrams
+\usetikzlibrary{shapes,arrows,positioning,trees}  % TikZ libraries
+\usepackage{pgfplots}  % for plots
+\pgfplotsset{compat=1.18}
+\usepackage{longtable}  % for long tables
+\usepackage{array}  % for enhanced table features
+\usepackage{multirow}  % for multirow cells in tables
+
 %% Information about the title, etc.
 %% Change these to match your document
 \title{Your Document Title}
@@ -92,10 +110,20 @@
 
 %% Specify the abstract here.
 \abstract{
-Your abstract goes here. This should be a concise summary of your work.
-For PhD theses, this is typically 300-500 words.
-For annual reviews, this might be a brief overview of progress made.
-For proposals, this should outline your planned research.
+This enhanced University of Edinburgh thesis template builds upon the excellent
+work by Daniel Hillerstroem, Chris Vasiladiotis, and Laurie Burchell from their
+CDT in NLP thesis template (https://www.overleaf.com/latex/templates/cdt-in-nlp-thesis/dwhtbkzqpjwx).
+
+This template extends the original work with additional features including:
+comprehensive pseudocode examples using the algorithm and algorithmic packages,
+advanced TikZ diagrams for flowcharts and mathematical visualizations,
+enhanced table formatting with support for complex multi-row and multi-column layouts,
+improved citation management with multiple reference styles,
+and optional supervisor signature sections for different institutional requirements.
+
+The template maintains compatibility with the original infthesis class while
+providing modern LaTeX best practices and extensive documentation through
+example chapters that demonstrate all available features.
 }
 
 %% Now we start with the actual document.
@@ -110,7 +138,7 @@ For proposals, this should outline your planned research.
 % Lay summary
 \cleardoublepage
 \begin{center}
-\textsf{\textbf{\LARGE Lay Summary}}
+\textsf{\textbf{Summary}}
 \end{center}
 Lay summary here
 
@@ -142,6 +170,7 @@ Acknowledgements here
 %% format.
 
 \include{chapters/1introduction}
+\include{chapters/2examples}
 
 %%%%%%%%
 %% Any appendices should go here. The appendix files should look just like the
