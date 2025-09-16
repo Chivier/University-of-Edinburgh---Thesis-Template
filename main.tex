@@ -1,17 +1,32 @@
 %%%%%%%%%%%%%%%%%%%%%%%%
-%% Sample use of the infthesis class to prepare a thesis. This can be used as 
+%% Sample use of the infthesis class to prepare a thesis. This can be used as
 %% a template to produce your own thesis.
 %%
 %% The title, abstract and so on are taken from Martin Reddy's csthesis class
 %% documentation.
 %%
-%% MEF, October 2002
+%% Original template: MEF, October 2002
+%% Enhanced template: Yeqi Huang <yeqi.huang@ed.ac.uk>, September 2025
+%%   - Added symmetric layout support
+%%   - Added phdannual option for annual reviews
+%%   - Added multi-disciplinary institute support
+%%   - Enhanced template generalization
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%
 %% Load the class. Put any options that you want here (see the documentation
 %% for the list of options). The following are samples for each type of
-%% thesis:
+%% document:
+%%
+%% Document types:
+%%  phd: PhD thesis (default)
+%%  phdannual: PhD annual review
+%%  phdproposal: PhD proposal
+%%  mphil: Master of Philosophy thesis
+%%  mscres: Master of Science by Research
+%%  msc: Master of Science taught degree
+%%  minf: Master of Informatics
+%%  bsc: Bachelor of Science project report
 %%
 %% Note: you can also specify any of the following options:
 %%  logo: put a University of Edinburgh logo onto the title page
@@ -32,11 +47,27 @@
 %%  abbrevs: define a list of useful abbreviations (see documentation)
 %%  draft: produce a single-spaced, double-sided thesis with narrow margins
 %%
-%% For a PhD thesis -- you must also specify a research institute:
-\documentclass[phd,ilcc,twoside,logo]{infthesis}
+%% For PhD documents -- you must also specify a research institute:
+%% Change the first option below to match your document type and institute
+\documentclass[phd,ilcc,oneside,logo]{infthesis}
+%% For annual review, use: \documentclass[phdannual,ilcc,oneside,logo]{infthesis}
+%% For PhD proposal, use: \documentclass[phdproposal,ilcc,oneside,logo]{infthesis}
+%%
+%% Available institutes/schools:
+%% School of Informatics: aiai, cisa, icsa, ianc, ilcc, ipab, lfcs
+%% School of Mathematics: maxwell, mathstats
+%% School of Physics and Astronomy: physics, astronomy, particle
+%% School of Biological Sciences: biology, molcell, ecology
+%% School of Chemistry: chemistry
+%% School of GeoSciences: geosciences, geology, geography
+%%
+%% Examples:
+%% Mathematics PhD: \documentclass[phd,maxwell,oneside,logo]{infthesis}
+%% Physics PhD: \documentclass[phd,physics,oneside,logo]{infthesis}
+%% Biology PhD: \documentclass[phd,biology,oneside,logo]{infthesis}
+%% Chemistry PhD: \documentclass[phd,chemistry,oneside,logo]{infthesis}
 
 \usepackage[T1]{fontenc}
-\usepackage{fontspec}
 \usepackage{natbib}
 \usepackage[british]{babel}
 \usepackage{graphicx}
@@ -48,18 +79,24 @@
 \usepackage{cleveref} % for references to sections/figures/tables...
 
 %% Information about the title, etc.
-\title{Your amazing thesis}
-\author{Your name here}
+%% Change these to match your document
+\title{Your Document Title}
+\author{Your Name Here}
 
-%% If the year of submission is not the current year, uncomment this line and 
+%% If the year of submission is not the current year, uncomment this line and
 %% specify it here:
-\submityear{2099}
+%\submityear{2025}
 
 %% Optionally, specify the graduation month and year:
-%\graduationdate{June 2024}
+%\graduationdate{June 2025}
 
 %% Specify the abstract here.
-\abstract{Your abstract here}
+\abstract{
+Your abstract goes here. This should be a concise summary of your work.
+For PhD theses, this is typically 300-500 words.
+For annual reviews, this might be a brief overview of progress made.
+For proposals, this should outline your planned research.
+}
 
 %% Now we start with the actual document.
 \begin{document}

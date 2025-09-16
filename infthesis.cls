@@ -1,11 +1,12 @@
 %%
 %%    File : infthesis.cls    (LaTeX2e class file)
-%%  Author : Version 3.6 by Charles Sutton <csutton@inf.ed.ac.uk>  
+%%  Author : Version 3.7 by Yeqi Huang <yeqi.huang@ed.ac.uk>
+%%           Version 3.6 by Charles Sutton <csutton@inf.ed.ac.uk>
 %%           Version 3.5 by Vasilis Vasaitis <v.vasaitis@sms.ed.ac.uk>
 %%           Version 3.4.1 updated by Tiejun Ma (t.j.ma@ed.ac.uk)
 %%           Version 3.0 by Mary Ellen Foster <mef@cogsci.ed.ac.uk>
-%%           Original version by Martin Reddy (mxr@dcs.ed.ac.uk) 
-%% Version : 3.6
+%%           Original version by Martin Reddy (mxr@dcs.ed.ac.uk)
+%% Version : 3.7
 %% Updates : 1.0 [9/11/95] - initial release.
 %%           1.1 [24/4/96] - fixed bibliography bug caused by new report.cls 
 %%           1.2 [13/5/96] - \dedication & \thesiscaption[]
@@ -30,6 +31,9 @@
 %%           3.5 [02/02/2011] - fix double-sided margins with modern
 %%                              versions of the geometry package
 %%           3.6 [15/03/2012] - addition to support the MInf degree
+%%           3.7 [16/09/2025] - Added phdannual option, multi-disciplinary support,
+%%                              symmetric layout, and enhanced template generalization
+%%                              by Yeqi Huang <yeqi.huang@ed.ac.uk>
 
 
 %% This file contains a class definition, infthesis, for the LaTeX2e
@@ -40,7 +44,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}[1994/12/01]
-\ProvidesClass{infthesis}[2011/02/02 v3.5 School of Informatics Thesis Class]
+\ProvidesClass{infthesis}[2025/09/16 v3.7 School of Informatics Thesis Class]
 
 
 %%
@@ -127,6 +131,7 @@ Processing}}
 
 % Institute
 \let\@institute\@empty
+% School of Informatics institutes
 \DeclareOption{aiai}{\gdef\@institute{Artificial Intelligence
 Applications Institute}}
 \DeclareOption{cisa}{\gdef\@institute{Centre for Intelligent Systems
@@ -141,6 +146,23 @@ Computation}}
 and Behaviour}}
 \DeclareOption{lfcs}{\gdef\@institute{Laboratory for Foundations of
 Computer Science}}
+% School of Mathematics
+\DeclareOption{maxwell}{\gdef\@institute{Maxwell Institute for Mathematical Sciences}}
+\DeclareOption{mathstats}{\gdef\@institute{School of Mathematics}}
+% School of Physics and Astronomy
+\DeclareOption{physics}{\gdef\@institute{School of Physics and Astronomy}}
+\DeclareOption{astronomy}{\gdef\@institute{Institute for Astronomy}}
+\DeclareOption{particle}{\gdef\@institute{School of Physics and Astronomy}}
+% School of Biological Sciences
+\DeclareOption{biology}{\gdef\@institute{School of Biological Sciences}}
+\DeclareOption{molcell}{\gdef\@institute{Institute of Molecular, Cell and Systems Biology}}
+\DeclareOption{ecology}{\gdef\@institute{Institute of Ecology and Evolution}}
+% School of Chemistry
+\DeclareOption{chemistry}{\gdef\@institute{School of Chemistry}}
+% School of GeoSciences
+\DeclareOption{geosciences}{\gdef\@institute{School of GeoSciences}}
+\DeclareOption{geology}{\gdef\@institute{Grant Institute}}
+\DeclareOption{geography}{\gdef\@institute{Institute of Geography}}
 
 % Degree
 \def\@researchdegree#1{%
@@ -154,6 +176,7 @@ Computer Science}}
     \@infschool \\ \@university}
     \setboolean{strict}{true}}
 \DeclareOption{phdproposal}{\@researchdegree{PhD Proposal}}
+\DeclareOption{phdannual}{\@researchdegree{PhD Annual Review}}
 \DeclareOption{phd}{\@researchdegree{Doctor of Philosophy}}
 \DeclareOption{mphil}{\@researchdegree{Master of Philosophy}}
 \DeclareOption{mscres}{\@researchdegree{Master of Science by Research}}
@@ -626,17 +649,23 @@ Computer Science}}
      \renewcommand{\maketitle}{
         \begin{titlepage}\begin{center}
         \null\vfil\vskip 60\p@
+        \ifthenelse{\boolean{logo}}%
+            {\resizebox{45mm}{!}{\includeshield}\\\vskip 20\p@}
+            {}
         {\LARGE\bfseries \@chapterfont \@title \par
            \ifthenelse{\boolean{draftthesis}}{\large (Draft Copy)}{}
         }\vfill
-        {\Large\itshape \@author \par}\vskip 1cm\vfill
-        \ifthenelse{\boolean{logo}}%
-            {\resizebox{30mm}{!}{\includeshield}\\\vfill}
-            {}
-        {\large \@degreetext \par \@submityear \par}
-        \vskip 1cm 
+        {\large Thesis submitted to the \@university{} for the degree of \\
+        \@degreetext, \@submityear.
         \ifthenelse{\equal{\@graduationdate}{}}{}
-           {{\large \ttfamily (Graduation date: \@graduationdate)}}
+           { \@graduationdate.}
+        \par}\vfill
+        {\Large\itshape \@author \par}\vfill
+        {\large Your ID \par}\vfill
+        {\large Supervised by \par}\vskip 10\p@
+        {\large First Supervisor \\ Second Supervisor \\ Third Supervisor \par}\vfill
+        {\large Signature \rule{5cm}{0.4pt} \par}\vskip 5\p@
+        {\large Date \rule{1.5cm}{0.4pt} / \rule{1.5cm}{0.4pt} / \rule{1.5cm}{0.4pt} \par}
         \end{center}
         \end{titlepage}\cleardoublepage
         \begin{mainabs}\@abs\end{mainabs}
